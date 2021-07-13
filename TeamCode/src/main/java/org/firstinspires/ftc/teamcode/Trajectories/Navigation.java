@@ -27,8 +27,8 @@ public class Navigation {
                                 new MecanumVelocityConstraint(35, DriveConstants.TRACK_WIDTH)
                         )
                 ), new ProfileAccelerationConstraint(DriveConstants.MAX_ACCEL))
-                .addTemporalMarker(0.5, () -> Arm.moveDown(1))
-                .addTemporalMarker(1.1, () -> Arm.moveDown(0.3))
+                .addTemporalMarker(0.6, () -> Arm.moveDown(1))
+                .addTemporalMarker(1.4, () -> Arm.moveDown(0.3))
                 .addTemporalMarker(3, Arm::stop)
                 .build();
         Shooter.on(Constants.powerConstant);
@@ -61,7 +61,9 @@ public class Navigation {
                 Robot.drive.followTrajectory(trajectory);
                 Robot.wait(500);
                 Robot.drive.followTrajectory(trajectory1);
-                Robot.wait(500);
+                Robot.wait(200);
+                Intake.succOut(0.4);
+                Robot.wait(300);
                 Shooter.shootOne();
                 Intake.stop();
                 Shooter.off();
@@ -87,7 +89,9 @@ public class Navigation {
                 Robot.drive.followTrajectory(trajectory2);
                 Robot.wait(500);
                 Robot.drive.followTrajectory(trajectory3);
-                Robot.wait(500);
+                Robot.wait(200);
+                Intake.succOut(0.4);
+                Robot.wait(300);
                 Shooter.shootThree();
                 Intake.stop();
                 Shooter.off();
@@ -127,7 +131,7 @@ public class Navigation {
                 Robot.drive.followTrajectory(trajectory2);
                 break;
             }
-            Robot.wait(500);
+            Robot.wait(800);
             Arm.open();
 
 
@@ -168,6 +172,7 @@ public class Navigation {
             Robot.drive.followTrajectory(trajectory5);
             break;
         }
+        Robot.wait(500);
         Arm.close();
         Robot.wait(500);
     }
